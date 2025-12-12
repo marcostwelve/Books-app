@@ -1,0 +1,43 @@
+<section class="card">
+  <header class="card-header">
+    <div>
+      <h1>Livros</h1>
+      <p class="subtitle">Gerencie os livros cadastrados</p>
+    </div>
+
+    <button class="btn primary" (click)="newBook()">+ Novo Livro</button>
+  </header>
+
+  <div *ngIf="loading" class="centered">
+    <div class="spinner"></div>
+  </div>
+
+  <div *ngIf="!loading && books.length">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Gênero</th>
+          <th class="col-actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.title }}</td>
+          <td>{{ book.authorName }}</td>
+          <td>{{ book.genreName }}</td>
+          <td class="col-actions">
+            <button class="btn small" (click)="editBook(book)">Editar</button>
+            <button class="btn small danger" (click)="deleteBook(book)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="!loading && !books.length" class="centered muted">
+    Nenhum livro cadastrado ainda.
+  </p>
+</section>
+
